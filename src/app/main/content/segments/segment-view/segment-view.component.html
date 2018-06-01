@@ -1,0 +1,27 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="m-0">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">
+        <span>{{ 'SEGMENTS.DIALOG.TITLE' | translate }}</span>&nbsp;&nbsp;{{ segment.name }}
+      </span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-35 m-0" fusePerfectScrollbar>
+    <h5>{{ 'SEGMENTS.DIALOG.CREATED_BY' | translate }}: <span>{{ segment.user }}</span></h5>
+    <h5>{{ 'SEGMENTS.DIALOG.DESCRIPTION' | translate }}</h5>
+    <p>{{ segment.description }}</p>
+    <h5>{{ 'SEGMENTS.DIALOG.CONDITIONS' | translate }}</h5>
+    <app-segment-conditions-view [segment]="segment"></app-segment-conditions-view>
+  </div>
+  <div mat-dialog-actions class="m-0 px-35 py-26" fxLayout="row" fxLayoutAlign="end center">
+    <button mat-raised-button
+            (click)="dialogRef.close(segment)"
+            class="mat-elevation-z mat-green-bg">
+      <mat-icon>add</mat-icon>
+      <span>{{ 'SEGMENTS.CLONE_SEGMENT' | translate }}</span>
+    </button>
+  </div>
+</div>

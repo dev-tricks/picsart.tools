@@ -1,0 +1,27 @@
+<div class="group">
+  <div class="group-key">
+    <div class="group-key-box">
+      <div class="group-key-container">
+        <div class="group-key-overflow">
+          <div class="group-key-button" [ngClass]="{'active': groupKey === '$and'}" (click)="groupKey = '$and'">
+            {{ 'SEGMENT_CONDITIONS.AND' | translate }}
+          </div>
+          <div class="group-key-button" [ngClass]="{'active': groupKey === '$or'}" (click)="groupKey = '$or'">
+            {{ 'SEGMENT_CONDITIONS.OR' | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group-items">
+    <div class="group-item" *ngFor="let conditionOrGroup of group[getKey(group)]"
+         [ngClass]="{'group-item-group': getKey(conditionOrGroup)}">
+      <div *ngIf="getKey(conditionOrGroup)">
+        <app-segment-conditions-view-group [group]="conditionOrGroup"></app-segment-conditions-view-group>
+      </div>
+      <div *ngIf="!getKey(conditionOrGroup)">
+        <app-segment-conditions-view-condition [condition]="conditionOrGroup"></app-segment-conditions-view-condition>
+      </div>
+    </div>
+  </div>
+</div>

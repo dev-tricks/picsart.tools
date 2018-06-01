@@ -6,29 +6,33 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FuseDirectivesModule } from '@fuse/directives/directives';
 import { FusePipesModule } from '@fuse/pipes/pipes.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-    imports  : [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
+  imports: [
+    CommonModule,
 
-        FlexLayoutModule,
+    NgSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
 
-        FuseDirectivesModule,
-        FusePipesModule
-    ],
-    exports  : [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
+    FlexLayoutModule,
 
-        FlexLayoutModule,
+    FuseDirectivesModule,
+    FusePipesModule,
+  ],
+  exports: [
+    CommonModule,
 
-        FuseDirectivesModule,
-        FusePipesModule
-    ]
+    NgSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+    FlexLayoutModule,
+
+    FuseDirectivesModule,
+    FusePipesModule,
+  ]
 })
-export class FuseSharedModule
-{
+export class FuseSharedModule {
 }

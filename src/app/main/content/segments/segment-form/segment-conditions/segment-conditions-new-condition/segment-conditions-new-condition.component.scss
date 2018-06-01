@@ -1,0 +1,41 @@
+:host {
+  .condition {
+    border: 1px solid #E6E6E6;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 18px;
+    height: 80px;
+
+    .condition-container {
+      display: flex;
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .title {
+        width: 120px;
+        margin-right: 11px;
+
+        h3 {
+          font-size: 18px;
+          color: black;
+          margin: 0;
+          font-weight: 300;
+        }
+      }
+      .type {
+        width: 160px;
+        margin-right: 11px;
+      }
+      .selector {
+        width: 160px;
+      }
+      .action {
+        margin-left: auto;
+      }
+    }
+  }
+}

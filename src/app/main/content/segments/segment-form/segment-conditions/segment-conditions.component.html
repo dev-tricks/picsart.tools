@@ -1,0 +1,7 @@
+<div fxLayout="row" fxLayoutAlign="start start">
+  <h3>{{ 'SEGMENTS.FORM.SEGMENT_CONDITIONS' | translate }}</h3>
+</div>
+<button mat-button type="button" (click)="addGroup()">Add Group</button>
+<div class="conditions">
+  <app-segment-conditions-group [groupDecoded]="groupDecoded"></app-segment-conditions-group>
+</div>

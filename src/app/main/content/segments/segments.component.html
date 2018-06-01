@@ -1,3 +1,22 @@
-<p>
-  segments works!
-</p>
+<div id="segments" class="page-layout simple tabbed" fxLayout="column" fusePerfectScrollbar>
+  <div class="header mat-accent-bg px-32 py-20" fxLayout="column" fxLayoutAlign="flex-end" fxLayout.gt-xs="row"
+       fxLayoutAlign.gt-xs="space-between flex-end">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+      <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+        <div class="h1 mt-16 font-weight-300" *fuseIfOnDom [@animate]="{value:'*', params:{delay:'100ms',x:'-25px'}}">
+          {{ 'SEGMENTS.TITLE' | translate }}
+        </div>
+      </div>
+    </div>
+    <button mat-raised-button
+            [routerLink]="['/segments/create']"
+            class="mat-elevation-z mat-green-bg mb-6"
+            *ngIf="roles['EDIT_SEGMENTS']">
+      <mat-icon>add</mat-icon>
+      <span>{{ 'SEGMENTS.CREATE_SEGMENT' | translate }}</span>
+    </button>
+  </div>
+  <div class="content mat-white-bg mat-elevation-z4">
+    <app-segment-list></app-segment-list>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="condition">
+  <div class="condition-container">
+    <div class="title">
+      <h3>{{ 'SEGMENT_CONDITIONS.NEW_CONDITION' | translate }}</h3>
+    </div>
+    <div class="type">
+      <ng-select [items]="conditionTypes"
+                 bindLabel="name"
+                 bindValue="id"
+                 placeholder="{{ 'SEGMENT_CONDITIONS.CONDITION_TYPE' | translate }}"
+                 [(ngModel)]="conditionType"
+                 (add)="onConditionTypeSelect($event)">
+      </ng-select>
+    </div>
+    <div class="selector" *ngIf="conditionType && selectorsFiltered">
+      <ng-select [items]="selectorsFiltered"
+                 bindLabel="displayName"
+                 bindValue="name"
+                 placeholder="{{ 'SEGMENT_CONDITIONS.CONDITION' | translate }}"
+                 [(ngModel)]="selectorName">
+      </ng-select>
+    </div>
+    <div class="action" *ngIf="selectorName">
+      <button mat-raised-button
+              type="button"
+              (click)="addCondition()"
+              class="mat-elevation-z mat-green-bg">
+        <mat-icon>add</mat-icon>
+        <span>{{ 'SEGMENT_CONDITIONS.ADD_CONDITION' | translate }}</span>
+      </button>
+    </div>
+  </div>
+</div>

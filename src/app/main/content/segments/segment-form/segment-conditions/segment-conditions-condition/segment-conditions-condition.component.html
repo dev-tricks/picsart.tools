@@ -1,0 +1,70 @@
+<div class="condition" *ngIf="condition.fieldName">
+  <div class="condition-container">
+    <div class="category">
+      <h2>{{ getType(condition.fieldName).name }}</h2>
+    </div>
+    <div class="selector" *ngIf="selectorsFiltered && selectorsFiltered.length">
+      <ng-select [items]="selectorsFiltered"
+                 bindLabel="displayName"
+                 bindValue="name"
+                 placeholder="{{ 'SEGMENT_CONDITIONS.SELECTOR' | translate }}"
+                 [(ngModel)]="condition.fieldName"
+                 (add)="onSelectorSelect($event)">
+      </ng-select>
+    </div>
+    <div class="operator" *ngIf="condition.fieldName && operators && condition.fieldName !== 'is_tablet'">
+      <ng-select [items]="operators"
+                 bindLabel="displayName"
+                 bindValue="code"
+                 placeholder="{{ 'SEGMENT_CONDITIONS.OPERATOR' | translate }}"
+                 [(ngModel)]="condition.operator">
+      </ng-select>
+    </div>
+    <div class="value" *ngIf="condition.operator">
+      <div *ngIf="condition.fieldName === 'country_code'">
+        <ng-select [items]="countries"
+                   [multiple]="true"
+                   [closeOnSelect]="false"
+                   bindLabel="name"
+                   bindValue="code"
+                   placeholder="{{ 'SEGMENT_CONDITIONS.SELECT_COUNTRIES' | translate }}"
+                   [(ngModel)]="values">
+        </ng-select>
+      </div>
+      <div *ngIf="condition.fieldName !== 'country_code'">
+        <div *ngIf="getOperatorType(condition.fieldName, selectors) === 'INCLUDE_EXCLUDE'">
+          <ng-select [items]="emptyData"
+                     bindLabel="name"
+                     [addTag]="true"
+                     [multiple]="true"
+                     [hideSelected]="true"
+                     placeholder="{{ 'SEGMENT_CONDITIONS.VALUE' | translate }}"
+                     [(ngModel)]="values">
+          </ng-select>
+        </div>
+        <div *ngIf="getOperatorType(condition.fieldName, selectors) === 'NEW_USER'">
+          aaaaaa
+        </div>
+        <div *ngIf="getOperatorType(condition.fieldName, selectors) === 'MAP'">
+          aaaaaa
+        </div>
+        <div *ngIf="getOperatorType(condition.fieldName, selectors) === 'COMPARE'">
+          aaaaaa
+          <div *ngIf="condition.fieldName === 'is_tablet'">
+            aaaaaa
+          </div>
+          <div *ngIf="condition.fieldName === 'versioncode'">
+            <input type="text" placeholder="Value" [(ngModel)]="condition.value">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="action">
+      <button mat-icon-button
+              type="button"
+              (click)="removeCondition(condition)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

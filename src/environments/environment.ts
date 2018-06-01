@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
-    hmr       : false
+  production: false,
+  hmr: false,
+  serverUrl: 'http://picsart.tools:8484/stage/',
+  baseUrl: 'http://picsart.tools:8484/stage/api/v1/',
+  clientId: 'picsart-tools-stage'
 };
 
 /*

@@ -1,0 +1,40 @@
+<div id="segment" class="page-layout simple tabbed" fxLayout="column" fusePerfectScrollbar>
+  <div class="header mat-accent-bg px-32 py-20" fxLayout="column" fxLayoutAlign="flex-end" fxLayout.gt-xs="row"
+       fxLayoutAlign.gt-xs="space-between flex-end">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="column" fxLayoutAlign.gt-xs="center start">
+      <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+        <div class="h1 mt-16 font-weight-300" *fuseIfOnDom [@animate]="{value:'*', params:{delay:'100ms',x:'-25px'}}">
+          {{ 'SEGMENTS.FORM.TITLE' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content mat-white-bg mat-elevation-z4">
+    <form class="px-32 py-16" name="segmentForm" [formGroup]="segmentForm">
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+        <mat-form-field fxFlex="50" class="pr-7">
+          <input matInput placeholder="{{ 'SEGMENTS.FORM.FORM.NAME.FIELD' | translate }}" formControlName="name"
+                 required>
+          <mat-error *ngIf="segmentFormErrors.name.required">
+            {{ 'SEGMENTS.FORM.FORM.NAME.ERROR.REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="50" class="pl-7">
+          <input matInput placeholder="{{ 'SEGMENTS.FORM.FORM.CREATED_BY.FIELD' | translate }}" formControlName="user">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field fxFlex>
+      <textarea matInput placeholder="{{ 'SEGMENTS.FORM.FORM.DESCRIPTION.FIELD' | translate }}"
+                formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <app-segment-conditions [segment]="segment"></app-segment-conditions>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start end">
+        <button mat-button (click)="prepareToSaveSegment()" [disabled]="segmentForm.invalid">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

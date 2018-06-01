@@ -1,0 +1,40 @@
+<div class="group">
+  <div class="group-key">
+    <div class="group-key-box">
+      <div class="group-key-container" [ngClass]="{'active': !groupDecoded.key}">
+        <div class="group-key-overflow">
+          <div class="group-key-button" [ngClass]="{'active': groupDecoded.key === '$and'}"
+               (click)="groupDecoded.key = '$and'">
+            {{ 'SEGMENT_CONDITIONS.AND' | translate }}
+          </div>
+          <div class="group-key-button" [ngClass]="{'active': groupDecoded.key === '$or'}"
+               (click)="groupDecoded.key = '$or'">
+            {{ 'SEGMENT_CONDITIONS.OR' | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group-items-container">
+    <div class="group-items" *ngIf="groupDecoded.conditions.length">
+      <div class="group-item" *ngFor="let conditionOrGroup of groupDecoded.conditions; let i = index"
+           [ngClass]="{'group-item-group': isGroup(conditionOrGroup)}"
+           [@fadeInFadeOut]>
+        <div *ngIf="isGroup(conditionOrGroup)">
+          <app-segment-conditions-group #group [groupDecoded]="conditionOrGroup"></app-segment-conditions-group>
+        </div>
+        <div *ngIf="!isGroup(conditionOrGroup)">
+          <app-segment-conditions-condition #condition [condition]="conditionOrGroup"
+                                            (remove)="removeCondition(i)"></app-segment-conditions-condition>
+        </div>
+      </div>
+    </div>
+    <div class="new-condition">
+      <app-segment-conditions-new-condition [groupDecoded]="groupDecoded"></app-segment-conditions-new-condition>
+    </div>
+    <div class="new-condition"
+         *ngIf="!groupDecoded.conditions.length">
+      <app-segment-conditions-new-condition [groupDecoded]="groupDecoded"></app-segment-conditions-new-condition>
+    </div>
+  </div>
+</div>

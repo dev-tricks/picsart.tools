@@ -1,0 +1,54 @@
+<mat-table class="segments-table"
+           #table [dataSource]="dataSource"
+           matSort
+           [@animateStagger]="{value:'50'}">
+  <ng-container cdkColumnDef="name">
+    <mat-header-cell *cdkHeaderCellDef mat-sort-header>{{ 'SEGMENTS.TABLE.NAME' | translate }}</mat-header-cell>
+    <mat-cell *cdkCellDef="let segment">
+      <p class="text-truncate">{{ segment.name }}</p>
+      <mat-icon ngxClipboard [cbContent]="segment.id" (click)="$event.stopPropagation()">content_copy</mat-icon>
+    </mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="id">
+    <mat-header-cell *cdkHeaderCellDef>{{ 'SEGMENTS.TABLE.ID' | translate }}</mat-header-cell>
+    <mat-cell *cdkCellDef="let segment">
+      <p class="text-truncate">{{ segment.id }}</p>
+    </mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="user">
+    <mat-header-cell *cdkHeaderCellDef>{{ 'SEGMENTS.TABLE.CREATED_BY' | translate }}</mat-header-cell>
+    <mat-cell *cdkCellDef="let segment">
+      <p class="text-truncate">{{ segment.user }}</p>
+    </mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="updateDate">
+    <mat-header-cell *cdkHeaderCellDef mat-sort-header>{{ 'SEGMENTS.TABLE.LAST_MODIFIED' | translate }}
+    </mat-header-cell>
+    <mat-cell *cdkCellDef="let segment">
+      <p class="text-truncate">{{ segment.updateDate | date: 'MMM dd, yyyy' }}</p>
+    </mat-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="actions">
+    <mat-header-cell *cdkHeaderCellDef>{{ 'SEGMENTS.TABLE.ACTIONS' | translate }}</mat-header-cell>
+    <mat-cell *cdkCellDef="let segment">
+      <div fxFlex="row" fxLayoutAlign="end center">
+        <button mat-icon-button (click)="$event.stopPropagation(); cloneSegment(segment)">
+          <mat-icon>add_to_photos</mat-icon>
+        </button>
+      </div>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *cdkRowDef="let segment; columns: displayedColumns;"
+           class="segment"
+           (click)="viewSegment(segment)"
+           matRipple
+           [@animate]="{value:'*',params:{y:'100%'}}">
+  </mat-row>
+</mat-table>
+<mat-paginator #paginator
+               [length]="dataSource.filteredData.length"
+               [pageIndex]="0"
+               [pageSize]="10"
+               [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

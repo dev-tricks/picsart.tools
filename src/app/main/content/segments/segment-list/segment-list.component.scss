@@ -1,0 +1,36 @@
+.segments-table {
+  .mat-row:hover .mat-cell .mat-icon {
+    visibility: visible;
+  }
+  .mat-cell {
+    .mat-icon {
+      visibility: hidden;
+    }
+  }
+
+  .mat-column-name {
+    justify-content: space-between;
+    p {
+      padding-right: 10px;
+    }
+  }
+  .mat-column-name {
+    flex-basis: 30%;
+  }
+  .mat-column-id {
+    flex-basis: 28%;
+    //flex: 0 1 280px;
+  }
+  .mat-column-user {
+    flex-basis: 25%;
+    //flex: 0 1 250px;
+  }
+  .mat-column-updateDate {
+    flex-basis: 17%;
+    //flex: 0 1 130px;
+  }
+  .mat-column-actions {
+    flex: 0 1 90px;
+  }
+}
+
